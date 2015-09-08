@@ -1,0 +1,42 @@
+<div>
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            用户管理
+        </div>
+    <div class="row">
+        <div class="col-lg-8"></div>
+        <div class="col-lg-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for..." ng-model='search'>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+        <th>姓名</th>
+        <th>余额 <span class="glyphicon glyphicon-flash" aria-hidden="true"> </span></th>
+        <th>头像</th>
+        <th>默认地址</th>
+        <th>操作</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in user | filter : search" >
+            <td>{{user.userName}}</td>
+            <td>{{user.residualPayment}}</td>
+            <td ng-if="user.url != 'undefined' ">{{user.url}}</td>
+            <td ng-if="user.url == 'undefined' ">系统默认头像</td>
+            <td ng-if="user.address.length == 0 ">暂无默认地址</td>
+            <td ng-if="user.address.length != 0"ng-repeat="address in user.address " ng-click="clickToAddress(address)">
+                <button type="button" class="btn btn-info navbar-btn">详细地址</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-warning navbar-btn" ng-click="remove(user._id)">删除</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+        </div>
+</div>
